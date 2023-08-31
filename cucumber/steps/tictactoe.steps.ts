@@ -37,7 +37,8 @@ defineFeature(feature, (test) => {
     });
 
     then("player X wins", () => {
-      expect(game.winner).toBe(game.playerX);
+      expect(game.winner).toBe("X");
+      expect(game.isFinished).toBe(true);
     });
   });
 
@@ -77,7 +78,8 @@ defineFeature(feature, (test) => {
     });
 
     then("player O wins", () => {
-      expect(game.winner).toEqual(game.playerO);
+      expect(game.winner).toEqual("O");
+      expect(game.isFinished).toEqual(true);
     });
   });
 
@@ -113,7 +115,8 @@ defineFeature(feature, (test) => {
     });
 
     then("player X wins", () => {
-      expect(game.winner).toEqual(game.playerX);
+      expect(game.winner).toEqual("X");
+      expect(game.isFinished).toEqual(true);
     });
   });
   test("Game ends in a draw", ({ given, and, when, then }) => {
@@ -164,7 +167,7 @@ defineFeature(feature, (test) => {
     });
 
     then("the game ends in a draw", () => {
-      expect(game.winner).toEqual(null);
+      expect(game.winner).toEqual("draw");
       expect(game.isFinished).toEqual(true);
     });
   });

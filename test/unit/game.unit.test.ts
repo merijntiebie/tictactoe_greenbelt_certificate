@@ -9,6 +9,21 @@ import {
   boardStateWithDiagonalWinForXFromTopRight,
 } from "../doubles/board.state";
 
+describe("When a new game is created", () => {
+  it("an empty board, player X and player O need to be created", () => {
+    const game = new Game();
+
+    expect(game.playerX.symbol).toEqual("X");
+    expect(game.playerO.symbol).toEqual("O");
+    expect(game.currentPlayer.symbol).toEqual("X");
+    expect(game.board.state).toEqual([
+      ["", "", ""],
+      ["", "", ""],
+      ["", "", ""],
+    ]);
+  });
+});
+
 describe("After a player has placed its symbol, the turn goes to the other player ", () => {
   it("Current player is X, next player is O", () => {
     const game = new Game();
@@ -66,11 +81,11 @@ describe("After a player places its symbol, we check if the player has won", () 
       expect(game.checkIfCurrentPlayerHasAHorizontalWin()).toEqual(false);
     });
     it(`
-         X| |X
-         -+-+-
-         O|O|O   -> is a win for O
-         -+-+-
-         X| | 
+          X| |X
+          -+-+-
+          O|O|O   -> is a win for O
+          -+-+-
+          X| | 
 `, () => {
       const game = new Game();
       game.board.setBoardState(boardStateWithHorizontalWinForO);
