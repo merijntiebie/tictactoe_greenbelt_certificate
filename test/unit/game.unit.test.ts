@@ -4,6 +4,9 @@ import {
   boardStateWithAlmostVerticalWinForX,
   boardStateWithAlmostHorizontalWinForO,
   boardStateWithHorizontalWinForO,
+  boardStateWithAlmostDiagonalWinForX,
+  boardStateWithDiagonalWinForXFromTopLeft,
+  boardStateWithDiagonalWinForXFromTopRight,
 } from "../doubles/board.state";
 
 describe("After a player has placed its symbol, the turn goes to the other player ", () => {
@@ -74,6 +77,47 @@ describe("After a player places its symbol, we check if the player has won", () 
       game.lastMove = [1, 2];
       game.setCurrentPlayer(game.playerO);
       expect(game.checkIfCurrentPlayerHasAHorizontalWin()).toEqual(true);
+    });
+  });
+  describe("A player can win with a diagonal win", () => {
+    it(`
+          X| |
+          -+-+-
+          O|X|X   -> is not a win for X
+          -+-+-
+          O| | 
+    `, () => {
+      const game = new Game();
+      game.board.setBoardState(boardStateWithAlmostDiagonalWinForX);
+      game.lastMove = [1, 2];
+      game.setCurrentPlayer(game.playerX);
+      expect(game.checkIfCurrentPlayerHasADiagonalWin()).toEqual(false);
+    });
+    it(`
+          X| |
+          -+-+-
+          O|X|    -> is a win for X
+          -+-+-
+          O| |X 
+    `, () => {
+      const game = new Game();
+      game.board.setBoardState(boardStateWithDiagonalWinForXFromTopLeft);
+      game.lastMove = [2, 2];
+      game.setCurrentPlayer(game.playerX);
+      expect(game.checkIfCurrentPlayerHasADiagonalWin()).toEqual(true);
+    });
+    it(`
+           | |X
+          -+-+-
+          O|X|    -> is a win for X
+          -+-+-
+          X| |O 
+`, () => {
+      const game = new Game();
+      game.board.setBoardState(boardStateWithDiagonalWinForXFromTopRight);
+      game.lastMove = [2, 0];
+      game.setCurrentPlayer(game.playerX);
+      expect(game.checkIfCurrentPlayerHasADiagonalWin()).toEqual(true);
     });
   });
 });

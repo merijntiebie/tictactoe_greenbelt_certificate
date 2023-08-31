@@ -38,7 +38,7 @@ X|O|   --> No win ✅
 -+-+- 
  | |O 
  
-🙌 2 – Player O won with a horizontal line 
+✅ 2 – Player O won with a horizontal line 
 Player O: 
 X| |X  
 -+-+- 
@@ -61,22 +61,52 @@ O|O| --> No win ✅
 -+-+-
 X| |O 
  
-3 – Player X won with a diagonal line 
+✅ 3 – Player X won with a diagonal line 
 Player X: 
 X| |  
 -+-+- 
 O|X|  
 -+-+- 
 O| |X 
+
+✅ Unit: checking for a diagonal win
+
+X| |  
+-+-+- 
+O|X|   --> Win ✅
+-+-+- 
+O| |X 
+
+ | |X 
+-+-+- 
+O|X|   --> Win ✅
+-+-+- 
+X| |O 
+
+X| |  
+-+-+- 
+O|X|X  --> No win ✅
+-+-+- 
+O| | 
  
 PLAYER X WON! 
  
-4 – Game ends with a draw 
+🙌4 – Game ends with a draw 
 Player X: 
 X|O|X  
 -+-+- 
 O|O|X 
 -+-+- 
 X|X|O 
+
+Unit: get empty spots
+
+empty board ✅
+
+X| |  
+-+-+- 
+O|X|X  --> [[0,1][0,2][2,1][2,2]] 
+-+-+- 
+O| | 
  
 GAME ENDS WITH A DRAW! 

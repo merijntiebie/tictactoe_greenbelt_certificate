@@ -20,3 +20,27 @@ Scenario: Player O wins with a horizontal win
 	And player X has placed its mark at 0,2
 	When player O places its mark at 1,2
 	Then player O wins
+
+Scenario: Player X wins with a diagonal win
+	Given a game of TicTacToe
+	And player X and player O compete for the win
+	And player X has placed its mark at 0,0
+	And player O has placed its mark at 1,0
+	And player X has placed its mark at 1,1
+	And player O has placed its mark at 2,0
+	When player X places its mark at 2,2
+	Then player X wins
+
+Scenario: Game ends in a draw
+	Given a game of TicTacToe
+	And player X and player O compete for the win
+	And player X has placed its mark at 0,0
+	And player O has placed its mark at 0,1
+	And player X has placed its mark at 0,2
+	And player O has placed its mark at 1,0
+	And player X has placed its mark at 1,2
+	And player O has placed its mark at 1,1
+	And player X has placed its mark at 2,0
+	And player O has placed its mark at 2,2
+	When player X places its mark at 2,1
+	Then the game ends in a draw

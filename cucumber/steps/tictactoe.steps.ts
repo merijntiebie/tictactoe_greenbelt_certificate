@@ -80,4 +80,92 @@ defineFeature(feature, (test) => {
       expect(game.winner).toEqual(game.playerO);
     });
   });
+
+  test("Player X wins with a diagonal win", ({ given, and, when, then }) => {
+    let game: Game;
+    given("a game of TicTacToe", () => {
+      game = new Game();
+    });
+
+    and("player X and player O compete for the win", () => {
+      expect(game.playerX.symbol).toEqual("X");
+      expect(game.playerO.symbol).toEqual("O");
+    });
+
+    and(/^player X has placed its mark at (\d+),(\d+)$/, (row, column) => {
+      game.takeTurn(parseInt(row), parseInt(column));
+    });
+
+    and(/^player O has placed its mark at (\d+),(\d+)$/, (row, column) => {
+      game.takeTurn(parseInt(row), parseInt(column));
+    });
+
+    and(/^player X has placed its mark at (\d+),(\d+)$/, (row, column) => {
+      game.takeTurn(parseInt(row), parseInt(column));
+    });
+
+    and(/^player O has placed its mark at (\d+),(\d+)$/, (row, column) => {
+      game.takeTurn(parseInt(row), parseInt(column));
+    });
+
+    when(/^player X places its mark at (\d+),(\d+)$/, (row, column) => {
+      game.takeTurn(parseInt(row), parseInt(column));
+    });
+
+    then("player X wins", () => {
+      expect(game.winner).toEqual(game.playerX);
+    });
+  });
+  test("Game ends in a draw", ({ given, and, when, then }) => {
+    let game: Game;
+    given("a game of TicTacToe", () => {
+      game = new Game();
+    });
+
+    and("player X and player O compete for the win", () => {
+      expect(game.playerX.symbol).toEqual("X");
+      expect(game.playerO.symbol).toEqual("O");
+    });
+
+    and(/^player X has placed its mark at (\d+),(\d+)$/, (row, column) => {
+      game.takeTurn(parseInt(row), parseInt(column));
+    });
+
+    and(/^player O has placed its mark at (\d+),(\d+)$/, (row, column) => {
+      game.takeTurn(parseInt(row), parseInt(column));
+    });
+
+    and(/^player X has placed its mark at (\d+),(\d+)$/, (row, column) => {
+      game.takeTurn(parseInt(row), parseInt(column));
+    });
+
+    and(/^player O has placed its mark at (\d+),(\d+)$/, (row, column) => {
+      game.takeTurn(parseInt(row), parseInt(column));
+    });
+
+    and(/^player X has placed its mark at (\d+),(\d+)$/, (row, column) => {
+      game.takeTurn(parseInt(row), parseInt(column));
+    });
+
+    and(/^player O has placed its mark at (\d+),(\d+)$/, (row, column) => {
+      game.takeTurn(parseInt(row), parseInt(column));
+    });
+
+    and(/^player X has placed its mark at (\d+),(\d+)$/, (row, column) => {
+      game.takeTurn(parseInt(row), parseInt(column));
+    });
+
+    and(/^player O has placed its mark at (\d+),(\d+)$/, (row, column) => {
+      game.takeTurn(parseInt(row), parseInt(column));
+    });
+
+    when(/^player X places its mark at (\d+),(\d+)$/, (row, column) => {
+      game.takeTurn(parseInt(row), parseInt(column));
+    });
+
+    then("the game ends in a draw", () => {
+      expect(game.winner).toEqual(null);
+      expect(game.isFinished).toEqual(true);
+    });
+  });
 });
