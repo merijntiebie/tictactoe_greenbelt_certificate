@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  title: Tic Tac Toe API
+  version: 1.0.0
+paths:
+  /api/start-game:
+    post:
+      summary: Start a new Tic Tac Toe game in bot mode
+      responses:
+        '200':
+          description: Game succesfully played
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameResult'
+components:
+  schemas:
+    GameResult:
+      type: object
+      properties:
+        board:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+        moves:
+          type: array
+          items:
+            $ref: '#/components/schemas/Move'
+        winner:
+          $ref: '#/components/schemas/Player'
+        isDraw:
+          type: boolean
+    Move:
+      type: object
+      properties:
+        row:
+          type: integer
+        col:
+          type: integer
+    Player:
+      type: object
+      properties:
+        symbol:
+          type: string

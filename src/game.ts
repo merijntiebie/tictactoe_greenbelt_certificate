@@ -16,6 +16,8 @@ export class Game {
 
   isFinished: boolean;
 
+  moves: Array<number[]>;
+
   constructor() {
     this.playerX = new Player("X");
     this.playerO = new Player("O");
@@ -24,6 +26,7 @@ export class Game {
     this.lastMove = [-1, -1];
     this.winner = null;
     this.isFinished = false;
+    this.moves = [];
   }
 
   switchTurns() {
@@ -87,15 +90,37 @@ export class Game {
   takeTurn(row: number, column: number) {
     this.board.setSymbol(row, column, this.currentPlayer.symbol);
     this.lastMove = [row, column];
-    if (this.checkIfCurrentPlayerHasAVerticalWin() === true) {
+    if (this.checkIfCurrentPlayerHasWon() === true) {
       this.winner = this.currentPlayer;
     }
-    if (this.checkIfCurrentPlayerHasAHorizontalWin() === true) {
-      this.winner = this.currentPlayer;
+    if (this.checkIfGameHasEnded() === true) {
+      this.isFinished = true;
     }
-    if (this.checkIfCurrentPlayerHasADiagonalWin() === true) {
-      this.winner = this.currentPlayer;
-    }
+    this.moves.push([row, column]);
     this.switchTurns();
+  }
+
+  private checkIfCurrentPlayerHasWon() {
+    return (
+      this.checkIfCurrentPlayerHasADiagonalWin() ||
+      this.checkIfCurrentPlayerHasAHorizontalWin() ||
+      this.checkIfCurrentPlayerHasAVerticalWin()
+    );
+  }
+
+  checkIfGameHasEnded() {
+    if (this.winner !== null || this.board.getEmptySpots().length === 0) {
+      return true;
+    }
+    return false;
+  }
+
+  playTicTacToe() {
+    while (this.isFinished === false) {
+      const emptySpots = this.board.getEmptySpots();
+      const randomEmptySpot =
+        emptySpots[Math.floor(Math.random() * emptySpots.length)];
+      this.takeTurn(randomEmptySpot[0], randomEmptySpot[1]);
+    }
   }
 }

@@ -91,7 +91,7 @@ O| |
  
 PLAYER X WON! 
  
-🙌4 – Game ends with a draw 
+✅ 4 – Game ends with a draw 
 Player X: 
 X|O|X  
 -+-+- 
