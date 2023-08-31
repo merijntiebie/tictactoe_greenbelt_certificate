@@ -11,9 +11,17 @@ app.post("/game", (req: Request, res: Response) => {
   const game = new Game();
   game.playTicTacToe();
 
+  let winnerString;
+  if (game.winner !== null) {
+    winnerString = game.winner.symbol;
+  } else {
+    winnerString = "draw";
+  }
+
   res.json({
     board: game.board.state,
     moves: game.moves,
+    winner: winnerString,
   });
 });
 

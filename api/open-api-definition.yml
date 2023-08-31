@@ -29,18 +29,13 @@ components:
           items:
             $ref: '#/components/schemas/Move'
         winner:
-          $ref: '#/components/schemas/Player'
-        isDraw:
-          type: boolean
+          type: string
     Move:
       type: object
       properties:
         row:
           type: integer
-        col:
+        column:
           type: integer
-    Player:
-      type: object
-      properties:
         symbol:
           type: string

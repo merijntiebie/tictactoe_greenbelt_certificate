@@ -1,5 +1,6 @@
 import { Player } from "./players";
 import { Board } from "./board";
+import { Move } from "./move";
 
 export class Game {
   playerX: Player;
@@ -16,7 +17,7 @@ export class Game {
 
   isFinished: boolean;
 
-  moves: Array<number[]>;
+  moves: Move[];
 
   constructor() {
     this.playerX = new Player("X");
@@ -96,7 +97,8 @@ export class Game {
     if (this.checkIfGameHasEnded() === true) {
       this.isFinished = true;
     }
-    this.moves.push([row, column]);
+    const move = new Move(row, column, this.currentPlayer.symbol);
+    this.moves.push(move);
     this.switchTurns();
   }
 
