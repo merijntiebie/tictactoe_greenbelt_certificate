@@ -67,10 +67,13 @@ class Game {
         this.board.setSymbol(row, column, this.currentPlayer.symbol);
         this.lastMove = [row, column];
         if (this.checkIfCurrentPlayerHasWon() === true) {
-            this.winner = this.currentPlayer;
+            this.winner = this.currentPlayer.symbol;
         }
         if (this.checkIfGameHasEnded() === true) {
             this.isFinished = true;
+        }
+        if (this.checkIfGameHasEndedWithDraw() === true) {
+            this.winner = "draw";
         }
         const move = new move_1.Move(row, column, this.currentPlayer.symbol);
         this.moves.push(move);
@@ -83,6 +86,12 @@ class Game {
     }
     checkIfGameHasEnded() {
         if (this.winner !== null || this.board.getEmptySpots().length === 0) {
+            return true;
+        }
+        return false;
+    }
+    checkIfGameHasEndedWithDraw() {
+        if (this.winner === null && this.board.getEmptySpots().length === 0) {
             return true;
         }
         return false;

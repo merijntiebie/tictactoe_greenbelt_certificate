@@ -18,7 +18,7 @@ app.post("/game", (req: Request, res: Response) => {
   });
 });
 
-// The server is listening on port 3000
-app.listen(3000, () => {
-  console.log("App is listening on port 3000!");
+// The server is listening on port 3100
+app.listen(3100, () => {
+  console.log("App is listening on port 3100!");
 });
