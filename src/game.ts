@@ -42,10 +42,6 @@ export class Game {
     this.currentPlayer = player;
   }
 
-  setLastMove(row: number, column: number) {
-    this.lastMove = [row, column];
-  }
-
   checkIfCurrentPlayerHasAVerticalWin(): boolean {
     const columnOfLastMove = this.lastMove[1];
     const symbolOfLastMove = this.currentPlayer.symbol;
